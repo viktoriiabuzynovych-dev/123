@@ -154,14 +154,37 @@ Your browser does not support the audio element.
 
   </div>
 
-  <!-- Form -->
-  <div class="form">
-    <h2>Залишити заявку</h2>
-    <input type="text" placeholder="Ваше ім'я">
-    <input type="tel" placeholder="Ваш телефон">
-    <textarea placeholder="Коментар"></textarea>
-    <button class="btn">Відправити</button>
-  </div>
+ <!-- Form -->
+<div class="form">
+  <h2>Залишити заявку</h2>
+  
+  <input id="name" type="text" placeholder="Ваше ім'я">
+  <input id="phone" type="tel" placeholder="Ваш телефон">
+  <textarea id="comment" placeholder="Коментар"></textarea>
+  
+  <button class="btn" onclick="sendData()">Відправити</button>
+</div>
+
+<script>
+function sendData() {
+  const data = {
+    name: document.getElementById("name").value,
+    phone: document.getElementById("phone").value,
+    comment: document.getElementById("comment").value
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycbwiMzgTvPqARbgBTJySvI0nZRI7iSR3oIrZG3ntFSlOWb1W-Bd6JHIEGj4pyBRsTzct/exec", {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  alert("Заявка відправлена!");
+}
+</script>
 
 </div>
 
